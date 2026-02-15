@@ -148,3 +148,5 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📄 License
 
 The Laravel HTML package is open-sourced software licensed under the [MIT license](LICENSE.txt).
+
+

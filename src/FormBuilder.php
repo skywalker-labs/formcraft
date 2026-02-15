@@ -2092,9 +2092,9 @@ class FormBuilder
      * @param  string $name
      * @return bool
      */
-    public function hasError(string $name): bool
+    public function hasError(?string $name): bool
     {
-        if (! isset($this->errors)) {
+        if (is_null($name) || ! isset($this->errors)) {
             return false;
         }
 

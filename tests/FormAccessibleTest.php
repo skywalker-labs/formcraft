@@ -46,6 +46,27 @@ class FormAccessibleTest extends PHPUnit\Framework\TestCase
 
     protected function setUp(): void
     {
+        $capsule = new Capsule;
+
+        $capsule->addConnection([
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => '',
+        ]);
+
+        $capsule->bootEloquent();
+        $capsule->setAsGlobal();
+
+        Capsule::schema()->create('models', function ($table) {
+            $table->increments('id');
+            $table->string('string')->nullable();
+            $table->string('email')->nullable();
+            $table->string('address')->nullable();
+            $table->string('array')->nullable();
+            $table->string('transform_key')->nullable();
+            $table->timestamps();
+        });
+
         Capsule::table('models')->truncate();
         Model::unguard();
 

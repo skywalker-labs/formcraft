@@ -3,12 +3,25 @@
 namespace Skywalker\Html;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
-use Illuminate\Support\ServiceProvider;
+use Skywalker\Support\Providers\PackageServiceProvider;
 use Illuminate\Support\Str;
 use Illuminate\View\Compilers\BladeCompiler;
 
-class HtmlServiceProvider extends ServiceProvider implements DeferrableProvider
+class HtmlServiceProvider extends PackageServiceProvider implements DeferrableProvider
 {
+    /**
+     * Vendor name.
+     *
+     * @var string
+     */
+    protected $vendor = 'skywalker';
+
+    /**
+     * Package name.
+     *
+     * @var string
+     */
+    protected $package = 'html';
     /**
      * Supported Blade Directives
      *
@@ -75,7 +88,9 @@ class HtmlServiceProvider extends ServiceProvider implements DeferrableProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/config/html.php', 'html');
+        parent::register();
+
+        $this->registerConfig();
 
         $this->registerHtmlBuilder();
 
@@ -94,11 +109,11 @@ class HtmlServiceProvider extends ServiceProvider implements DeferrableProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__ . '/config/html.php' => config_path('html.php'),
-        ], 'html-config');
+        parent::boot();
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'html');
+        $this->publishAll();
+
+        $this->loadViews();
 
         // Register Blade components with 'form' prefix
         $this->app->afterResolving(BladeCompiler::class, function (BladeCompiler $blade) {
@@ -141,7 +156,7 @@ class HtmlServiceProvider extends ServiceProvider implements DeferrableProvider
      *
      * @return void
      */
-    protected function registerBladeDirectives()
+    protected function registerBladeDirectives(): void
     {
         $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler) {
             $namespaces = [

@@ -24,11 +24,6 @@ class A11yTest extends TestCase
         $this->formBuilder = new FormBuilder($this->htmlBuilder, $this->urlGenerator, $this->viewFactory, 'abc');
     }
 
-    protected function tearDown(): void
-    {
-        m::close();
-    }
-
     public function testAriaRequiredIsAddedToInput()
     {
         $input = $this->formBuilder->text('name', null, ['required' => 'required']);
