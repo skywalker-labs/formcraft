@@ -185,6 +185,7 @@ class FormBuilderTest extends PHPUnit\Framework\TestCase
     {
         $this->formBuilder->setSessionStore($session = m::mock('Illuminate\Contracts\Session\Session'));
 
+        $session->shouldReceive('has')->with('_old_input')->andReturn(false);
         $session->shouldReceive('get')->with('_old_input', [])->never();
 
         $form1 = $this->formBuilder->password('password');
@@ -196,6 +197,7 @@ class FormBuilderTest extends PHPUnit\Framework\TestCase
     {
         $this->formBuilder->setSessionStore($session = m::mock('Illuminate\Contracts\Session\Session'));
 
+        $session->shouldReceive('has')->with('_old_input')->andReturn(false);
         $session->shouldReceive('get')->with('_old_input', [])->never();
 
         $form = $this->formBuilder->file('img');
@@ -230,14 +232,17 @@ class FormBuilderTest extends PHPUnit\Framework\TestCase
         $this->formBuilder->setSessionStore($session = m::mock('Illuminate\Contracts\Session\Session'));
         $this->setModel($model = ['relation' => ['key' => 'attribute'], 'other' => 'val']);
 
+        $session->shouldReceive('has')->with('_old_input')->andReturn(true);
         $session->shouldReceive('get')->once()->with('_old_input', [])->andReturn(['name_with_dots' => 'some value']);
         $input = $this->formBuilder->text('name.with.dots', 'default value');
         $this->assertEquals('<input name="name.with.dots" type="text" value="some value">', (string) $input);
 
+        $session->shouldReceive('has')->with('_old_input')->andReturn(true);
         $session->shouldReceive('get')->once()->with('_old_input', [])->andReturn(['text' => ['key' => ['sub' => null]]]);
         $input = $this->formBuilder->text('text[key][sub]', 'default value');
         $this->assertEquals('<input name="text[key][sub]" type="text" value="default value">', (string) $input);
 
+        $session->shouldReceive('has')->with('_old_input')->andReturn(true);
         $session->shouldReceive('get')->with('_old_input', [])->andReturn(['relation' => ['key' => null]]);
         $input1 = $this->formBuilder->text('relation[key]');
 
@@ -629,6 +634,7 @@ class FormBuilderTest extends PHPUnit\Framework\TestCase
         $this->formBuilder->setSessionStore($session = m::mock('Illuminate\Contracts\Session\Session'));
         $this->setModel($model = ['size' => ['key' => 'S'], 'other' => 'val']);
 
+        $session->shouldReceive('has')->with('_old_input')->andReturn(true);
         $session->shouldReceive('get')->once()->with('_old_input', [])->andReturn(['size' => 'M']);
         $select = $this->formBuilder->select('size', $list, 'S');
         $this->assertEquals(
@@ -636,6 +642,7 @@ class FormBuilderTest extends PHPUnit\Framework\TestCase
             '<select name="size"><option value="L">Large</option><option value="M" selected="selected">Medium</option><option value="S">Small</option></select>'
         );
 
+        $session->shouldReceive('has')->with('_old_input')->andReturn(true);
         $session->shouldReceive('get')->once()->with('_old_input', [])->andReturn(['size' => ['multi' => ['L', 'S']]]);
         $select = $this->formBuilder->select('size[multi][]', $list, 'M', ['multiple' => 'multiple']);
         $this->assertEquals(
@@ -643,6 +650,7 @@ class FormBuilderTest extends PHPUnit\Framework\TestCase
             '<select multiple="multiple" name="size[multi][]"><option value="L" selected="selected">Large</option><option value="M">Medium</option><option value="S" selected="selected">Small</option></select>'
         );
 
+        $session->shouldReceive('has')->with('_old_input')->andReturn(true);
         $session->shouldReceive('get')->once()->with('_old_input', [])->andReturn(['size' => ['key' => null]]);
         $select = $this->formBuilder->select('size[key]', $list);
         $this->assertEquals(
@@ -738,16 +746,19 @@ class FormBuilderTest extends PHPUnit\Framework\TestCase
     public function testFormCheckboxRepopulation()
     {
         $this->formBuilder->setSessionStore($session = m::mock('Illuminate\Contracts\Session\Session'));
+        $session->shouldReceive('has')->with('_old_input')->andReturn(true);
         $session->shouldReceive('get')->with('_old_input', [])->andReturn(['check' => null]);
         $check = $this->formBuilder->checkbox('check', 1, true);
         $this->assertEquals('<input name="check" type="checkbox" value="1">', (string) $check);
 
         $this->formBuilder->setSessionStore($session = m::mock('Illuminate\Contracts\Session\Session'));
+        $session->shouldReceive('has')->with('_old_input')->andReturn(true);
         $session->shouldReceive('get')->with('_old_input', [])->andReturn(['check' => ['key' => 'yes']]);
         $check = $this->formBuilder->checkbox('check[key]', 'yes');
         $this->assertEquals('<input checked="checked" name="check[key]" type="checkbox" value="yes">', (string) $check);
 
         $this->formBuilder->setSessionStore($session = m::mock('Illuminate\Contracts\Session\Session'));
+        $session->shouldReceive('has')->with('_old_input')->andReturn(true);
         $session->shouldReceive('get')->with('_old_input', [])->andReturn(['multicheck' => [1, 3]]);
         $check1 = $this->formBuilder->checkbox('multicheck[]', 1);
         $check2 = $this->formBuilder->checkbox('multicheck[]', 2, true);
@@ -761,6 +772,7 @@ class FormBuilderTest extends PHPUnit\Framework\TestCase
     public function testFormCheckboxWithModelRelation()
     {
         $this->formBuilder->setSessionStore($session = m::mock('Illuminate\Contracts\Session\Session'));
+        $session->shouldReceive('has')->with('_old_input')->andReturn(true);
         $session->shouldReceive('get')->with('_old_input', [])->andReturn([]);
         $session->shouldReceive('get')->with('_old_input', [])->andReturn(['items' => null]);
 
