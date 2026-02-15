@@ -3,12 +3,12 @@
 ```
 ╔═══════════════════════════════════════════════════════════════╗
 ║                                                               ║
-║   ██╗      █████╗ ██████╗  █████╗ ██╗   ██╗███████╗██╗        ║
-║   ██║     ██╔══██╗██╔══██╗██╔══██╗██║   ██║██╔════╝██║        ║
-║   ██║     ███████║██████╔╝███████║██║   ██║█████╗  ██║        ║
-║   ██║     ██╔══██║██╔══██╗██╔══██║╚██╗ ██╔╝██╔══╝  ██║        ║
-║   ███████╗██║  ██║██║  ██║██║  ██║ ╚████╔╝ ███████╗███████╗   ║
-║   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚══════╝   ║
+║   ███████╗ ██████╗ ██████╗ ███╗   ███╗ ██████╗██████╗  █████╗ ║
+║   ██╔════╝██╔═══██╗██╔══██╗████╗ ████║██╔════╝██╔══██╗██╔══██╗║
+║   █████╗  ██║   ██║██████╔╝██╔████╔██║██║     ██████╔╝███████║║
+║   ██╔══╝  ██║   ██║██╔══██╗██║╚██╔╝██║██║     ██╔══██╗██╔══██║║
+║   ██║     ╚██████╔╝██║  ██║██║ ╚═╝ ██║╚██████╗██║  ██║██║  ██║║
+║   ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝║
 ║                                                               ║
 ║            HTML & Form Builder for Laravel                    ║
 ║       🎨 50+ Components | 🚀 Modern | ♿ Accessible          ║
@@ -18,10 +18,10 @@
 
 </div>
 
-# Laravel HTML & Form Builder
+# FormCraft - Laravel HTML & Form Builder
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/skywalker/laravel-html.svg?style=flat-square)](https://packagist.org/packages/skywalker/laravel-html)
-[![Total Downloads](https://img.shields.io/packagist/dt/skywalker/laravel-html.svg?style=flat-square)](https://packagist.org/packages/skywalker/laravel-html)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/skywalker-labs/formcraft.svg?style=flat-square)](https://packagist.org/packages/skywalker-labs/formcraft)
+[![Total Downloads](https://img.shields.io/packagist/dt/skywalker-labs/formcraft.svg?style=flat-square)](https://packagist.org/packages/skywalker-labs/formcraft)
 
 A comprehensive HTML and Form Builder for Laravel with **50+ modern features**, strict PHP 8.2+ typing, and built-in support for Bootstrap & Tailwind CSS.
 
@@ -37,7 +37,7 @@ A comprehensive HTML and Form Builder for Laravel with **50+ modern features**, 
 ## 📦 Installation
 
 ```bash
-composer require skywalker/laravel-html
+composer require skywalker-labs/formcraft
 ```
 
 Publish configuration:

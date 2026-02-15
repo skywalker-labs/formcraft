@@ -1,7 +1,8 @@
 {
-    "name": "skywalker/laravel-html",
+    "name": "skywalker-labs/formcraft",
     "description": "Modern HTML & Form Builder for Laravel with 50+ components, theme support (Bootstrap/Tailwind), Livewire integration, and accessibility features",
     "type": "library",
+    "license": "MIT",
     "keywords": [
         "laravel",
         "html",
@@ -14,13 +15,14 @@
         "accessibility",
         "ui-components"
     ],
+    "homepage": "https://github.com/skywalker-labs/formcraft",
     "support": {
-        "issues": "https://github.com/ermradulsharma/laravel-html/issues",
-        "source": "https://github.com/ermradulsharma/laravel-html",
-        "forum": "https://github.com/ermradulsharma/laravel-html/discussions",
-        "chat": "https://github.com/ermradulsharma/laravel-html/discussions",
-        "wiki": "https://github.com/ermradulsharma/laravel-html/wiki",
-        "documentation": "https://github.com/ermradulsharma/laravel-html/wiki",
+        "issues": "https://github.com/skywalker-labs/formcraft/issues",
+        "source": "https://github.com/skywalker-labs/formcraft",
+        "forum": "https://github.com/skywalker-labs/formcraft/discussions",
+        "chat": "https://github.com/skywalker-labs/formcraft/discussions",
+        "wiki": "https://github.com/skywalker-labs/formcraft/wiki",
+        "documentation": "https://github.com/skywalker-labs/formcraft/wiki",
         "email": "skywalkerlknw@gmail.com"
     },
     "funding": [
@@ -29,13 +31,18 @@
             "url": "https://github.com/sponsors/ermradulsharma"
         }
     ],
-    "homepage": "https://github.com/ermradulsharma/laravel-html",
-    "license": "MIT",
     "authors": [
+        {
+            "name": "Skywalker Labs Team",
+            "email": "skywalkerlknw@gmail.com",
+            "homepage": "https://skywalker-labs.com/",
+            "role": "Developer"
+        },
         {
             "name": "Mradul Sharma",
             "email": "skywalkerlknw@gmail.com",
-            "role": "Developer"
+            "homepage": "https://mradulsharma.vercel.app/",
+            "role": "Lead Developer"
         }
     ],
     "require": {
@@ -83,6 +90,6 @@
             }
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
